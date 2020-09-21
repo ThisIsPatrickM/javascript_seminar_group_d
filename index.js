@@ -5,7 +5,7 @@ const app = express();
 
 
 // test request
-app.get('api/test_template', (req, res) => {
+app.get('/api/test_template', (req, res) => {
     const template_test = require('./templates/test.json');
     res.json(template_test);
 });
