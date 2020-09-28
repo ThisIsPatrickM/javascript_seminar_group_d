@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const config = require('./config');
 const app = express();
-
+const socket = require('socket.io');
 
 // test request
 app.get('/api/test_template', (req, res) => {
@@ -13,4 +13,20 @@ app.get('/api/test_template', (req, res) => {
 // set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(config.PORT, () => console.log(`Server is running on ${config.PORT}`));
+const server = app.listen(config.PORT, () => console.log(`Server is running on ${config.PORT}`));
+
+//create a io socket
+const io = socket(server);
+const connectedUsers = new Set(); //a list of every connection to the socket
+io.on("connection", function (socket) {
+    console.log("Made socket connection");
+
+    socket.on("new user", function (data) {
+        socket.userId = data;
+        connectedUsers.add(data);
+      });
+    
+      socket.on("disconnect", () => {
+        connectedUsers.delete(socket.userId);
+      });
+  });
