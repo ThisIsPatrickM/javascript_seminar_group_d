@@ -8,7 +8,7 @@ const socket = require("socket.io");
 const swaggerUi = require("swagger-ui-express");
 const YAML = require('yamljs');
 const swaggerDocument = YAML.load('./swagger/docs/components.yaml');
-app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/games/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // test request
 app.get("/api/test_template", (req, res) => {
