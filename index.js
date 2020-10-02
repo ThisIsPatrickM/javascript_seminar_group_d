@@ -4,6 +4,10 @@ const config = require('./config');
 const app = express();
 const socket = require('socket.io');
 
+const docsRoute = require('./swagger/docs.route');
+const router = express.Router();
+router.use('/docs', docsRoute);
+
 // test request
 app.get('/api/test_template', (req, res) => {
     const template_test = require('./templates/test.json');
