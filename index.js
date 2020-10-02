@@ -3,6 +3,8 @@ const path = require("path");
 const config = require("./config");
 const app = express();
 const socket = require("socket.io");
+const http = require('http').Server(app);
+
 
 // Swagger
 const swaggerUi = require("swagger-ui-express");
@@ -19,12 +21,12 @@ app.get("/api/test_template", (req, res) => {
 // set static folder
 app.use(express.static(path.join(__dirname, "public")));
 
-const server = app.listen(config.PORT, () =>
+const server = http.listen(config.PORT, () =>
   console.log(`Server is running on ${config.PORT}`)
 );
 
 //create a io socket
-const io = socket(server);
+const io = socket(http);
 const connectedUsers = new Set(); //a list of every connection to the socket
 io.on("connection", function (socket) {
   console.log("Made socket connection");
