@@ -67,7 +67,7 @@ function handleJoinGameMessage(data, socket) {
         // Create new Session  
         let currentGame = createSession(data.sessionId, data.gameType, data.playerName);
         openSessions.set(data.sessionId, currentGame);
-
+        console.log(currentGame)
         io.to(data.sessionId).emit("updateGame", currentGame);
         socket.on("updateGame", handleUpdateGameMessage);
 
@@ -81,7 +81,7 @@ function handleJoinGameMessage(data, socket) {
         // TODO further update Details
 
         // Send new State in Room to every listener
-        io.to(data.sessionId).emit("updateGame", openSessions.get(data.sessionId).gameState);
+        io.to(data.sessionId).emit("updateGame", openSessions.get(data.sessionId));
     }
 };
 
