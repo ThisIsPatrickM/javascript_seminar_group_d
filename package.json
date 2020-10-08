@@ -22,8 +22,9 @@
   "dependencies": {
     "express": "^4.17.1",
     "http": "0.0.1-security",
+    "mongoose": "^5.10.8",
     "socket.io": "^2.3.0",
-    "swagger-jsdoc": "^4.0.0",
+    "swagger-jsdoc": "^4.2.0",
     "swagger-ui-express": "^4.1.4",
     "yamljs": "^0.3.0"
   },
