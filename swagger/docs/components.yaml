@@ -6,7 +6,7 @@ info:
 servers:
   - url: http://localhost:5000/
     description: Local Server
-  - url: https://javascript-group-d-frontend.herokuapp.com/
+  - url: https://javascript-group-d.herokuapp.com/
     description: Production Server
 
 
