@@ -6,7 +6,11 @@ const http = require('http').Server(app);
 const mongoose = require('mongoose');
 const games = require('./gameLogic.js');
 
-games.gameInit(http);
+const INDEX = "./public/index.html";
+const PORT = 55555;
+const ioServer = express().use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+    .listen(PORT, () => console.log(`Listening on ${PORT}`));
+games.gameInit(ioServer);
 
 // Swagger
 const swaggerUi = require("swagger-ui-express");
