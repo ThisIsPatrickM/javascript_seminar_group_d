@@ -22,6 +22,12 @@ const { send } = require("process");
 const swaggerDocument = YAML.load('./swagger/docs/components.yaml');
 app.use("/games/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // test request
 app.get("/api/test_template", (req, res) => {
     const template_test = require("./templates/test.json");
