@@ -8,8 +8,13 @@ const games = require('./gameLogic.js');
 
 const INDEX = "./public/index.html";
 const PORT = 55555;
-const ioServer = express().use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+const ioServer = express().use((req, res) => {
+
+        res.setHeader('Access-Control-Allow-Origin', '*:*');
+        res.sendFile(INDEX, { root: __dirname })
+    })
     .listen(PORT, () => console.log(`Listening on ${PORT}`));
+
 games.gameInit(ioServer);
 
 // Swagger
