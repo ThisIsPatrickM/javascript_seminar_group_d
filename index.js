@@ -10,10 +10,10 @@ const INDEX = "./public/index.html";
 const PORT = 55555;
 const ioApp = express();
 const cors = require('cors');
-ioApp.use(cors());
+ioApp.use(cors({ credentials: true, origin: "*:*" }));
 const ioServer = ioApp.use((req, res) => res.sendFile(INDEX, { root: __dirname }))
     .listen(PORT, () => console.log(`Listening on ${PORT}`));
-app.use(cors());
+app.use(cors({ credentials: true, origin: "*:*" }));
 
 games.gameInit(ioServer);
 
