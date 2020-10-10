@@ -13,7 +13,6 @@ ioApp.set('origins', '*:*');
 const ioServer = ioApp.use((req, res) => res.sendFile(INDEX, { root: __dirname }))
     .listen(PORT, () => console.log(`Listening on ${PORT}`));
 games.gameInit(ioServer);
-io
 
 // Swagger
 const swaggerUi = require("swagger-ui-express");
